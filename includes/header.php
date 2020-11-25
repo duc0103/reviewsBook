@@ -29,8 +29,16 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <style>
-        a {
-            color: white;
+        .contentReviews{
+            width:960px;
+            margin:auto;
+            max-width:100%;
+
+        }
+        @media screen and (max-width: 600px) {
+            body {
+                width:100%;
+            }
         }
 
         a:hover {
@@ -79,6 +87,7 @@
 
         .card-text{
         height:80px;  
+        overflow: hidden;
         }
 
     </style>

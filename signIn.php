@@ -14,6 +14,7 @@
 		  if($nums>0){ 
 			  $row=mysqli_fetch_array($query);
         $_SESSION['username']=$username;
+        $_SESSION['user_id']=$row["user_id"];
         $_SESSION['permission']=$row["permission"];
         $_SESSION["avatar"]=$row["avatar"];
         $_SESSION['IsSignIn']=true;

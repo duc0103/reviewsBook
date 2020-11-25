@@ -9,9 +9,10 @@
     }
 ?>
 <?php 
-	
     include_once("../includes/dbConfig.php");
-    include_once("getData.php");
+	include_once("getData.php");
+	include_once("conc.php");
+
 
 	$post_id = "";
 	$post_title = "";
@@ -25,6 +26,14 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <!-- ------------------------------------------------------------------------------------------ -->
+				<h3> 
+	  				<a href="add-post.php">
+	  					<button type="button" class="btn-sm btn btn-dark">Trang chu 
+	  						<span class="fa fa-plus"></span>
+	  					</button>
+	  				</a>
+  				</h3>
+  				</h3>
 				<h3> 
 	  				<a href="add-post.php">
 	  					<button type="button" class="btn-sm btn btn-dark">Tạo một bài review mới 
@@ -54,8 +63,8 @@
 								<tr class="post-info show-action">
 									<td><?php echo $row['post_title']; ?><br>
 										<div class="action">
-											<a href="post/edit-post.php?post_id=<?php echo $row['post_id'];?>">Sửa</a>
-											<a href="post/delete-post.php?post_id=<?php echo $row['post_id'];?>">Xóa</a>
+											<a href="edit.php?post_id=<?php echo $row['post_id'];?>">Sửa</a>
+											<a href="delete.php?post_id=<?php echo $row['post_id'];?>">Xóa</a>
 											
 										</div>
 									</td>

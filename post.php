@@ -68,7 +68,7 @@ include_once("includes/header.php");
 <div class="container ">
 	<div class="columns">
 		<div class="column col-2"></div>			
-		<div class="column col-md-12 col-8 ">
+		<div class="column col-md-12 col-12 ">
 			<div class="post-main">
 				<div class="card">
 					<div class="card-header">
@@ -83,7 +83,7 @@ include_once("includes/header.php");
 
 					<div class="card-body">
 						<strong><?php echo $post_description;?></strong>
-						<div class="text-justify"><?php echo $post_content;?></div>
+						<div class="text-justify contentReviews"><?php echo $post_content;?></div>
 					</div>
 				</div>
 			</div>
@@ -94,7 +94,7 @@ include_once("includes/header.php");
 						<li><a href="<?php echo DOMAIN.'/'.$post_involve['post_slug'].'-'.$post_involve['post_id'].'.html';?>">
 							<?= $post_involve['post_title'] ?>
 							</a>
-						</li>
+						</li>  
 					<?php }?>
 				</ul>
 			</div>

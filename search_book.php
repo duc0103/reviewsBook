@@ -3,7 +3,7 @@
   require_once "./includes/header.php";
 
   $text = trim($_POST['textSearch']);
-  $query = "SELECT book_name,author_name, post_description,post_title ,post_slug,publisher_name,post_id ,book_image FROM posts  INNER JOIN publishers on publishers.publisher_id=posts.publisher_id INNER JOIN author ON author.author_id=posts.author_id where book_name like'%$text%' or author_name like '%$text%' or post_title like '%$$text%' or publisher_name like '%$text%'";
+  $query = "SELECT book_name,author_name, post_description,post_title ,post_slug,post_id ,book_image FROM posts  INNER JOIN author ON author.author_id=posts.author_id where book_name like'%$text%' or author_name like '%$text%' or post_title like '%$$text%' ";
   $result = mysqli_query($conn, $query);
   if(mysqli_num_rows($result)==0){
     echo '

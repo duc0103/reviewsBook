@@ -8,13 +8,13 @@
 	} else {
 		header('Location:_DOMAIN');
 	}
+	include_once("dbConfig.php");
+
 
 ?>
+
 <?php
-	
-	
-	include_once("dbConfig.php");
-	
+
 
 	$username_edit = "";
 	$id_user_edit = 0;
@@ -38,6 +38,34 @@
 	$post_slug = "";
 
 	$publishOK = TRUE;
+
+
+if(isset($_GET['post_id']) ){
+
+	$post_id = $_GET['post_id'];
+
+	$sql_GetPostId = "SELECT * FROM posts WHERE post_id = '$post_id' ";
+	$query_GetPostId = mysqli_query($conn,$sql_GetPostId);
+	 
+	 //PROCESS CONTENT POST
+	while ($getPostInfo = mysqli_fetch_array($query_GetPostId) ) {
+	$post_title =$getPostInfo['post_title'];
+			$post_content =$getPostInfo['post_content'];
+			$book_name=$getPostInfo['book_name'];
+			$post_description =$getPostInfo['post_description'];
+			// $post_author=$_POST['post_author'];
+			$post_keyword =$getPostInfo['key_word'];
+			$post_slug = toSlug($post_title);
+			if (isset($_POST['post_public'])) {
+				$isPublic =$getPostInfo['post_public'];
+			}
+			if (isset($_POST['post_category'])) {
+				$post_category =$getPostInfo['post_category'];
+			}
+}
+}
+
+	
 
 	if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		
@@ -158,7 +186,7 @@
 						    </div>
                             <div class="form-group">
                             <span> Tên Sách</span>
-						      <input class="form-control" id="post_content" name="book_name"><?php echo $post_content; ?>
+						      <input class="form-control" id="$book_name" name="book_name" value= "<?php echo $book_name; ?>">
 						    </div>
                             <div class="form-group">     
 							<div class="form-inline">
@@ -192,17 +220,17 @@
 
 										<div class="form-group">
 											<label for="">Thẻ giới thiệu  </label>
-											<textarea class="form-control" name="post_description"><?php echo $post_description; ?></textarea>
+											<textarea class="form-control" name="post_description" ><?php echo $post_description; ?></textarea>
 										</div>
 
 										<div class="form-group">
 											<label for="">Focus keyword: </label>
-											<input type="text" name="post_keyword" class="form-control" value="<?php echo $post_keyword; ?>" >
+											<input type="text" name="post_keyword" class="form-control"<?php echo $post_keyword; ?> >
 										</div>	
-										<div class="form-group">
+										<!-- <div class="form-group">
 											<label for="">Tên tác giả</label>
 											<input type="text" name="post_author" class="form-control" value="<?php echo $post_keyword; ?>" >
-										</div>	
+										</div>	 -->
 									</div>
 							      </div>
 							    </div> <!-- end  seo collapse -->
@@ -305,7 +333,6 @@
 		</div><!-- end container-fluid -->
 
 <?php 
-// include_once("../inc/footer.php");
 ?>
 	<script type="text/javascript" src="ckeditor/ckeditor.js"></script> 
 	<script>
