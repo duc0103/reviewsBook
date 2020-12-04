@@ -221,6 +221,9 @@ ALTER TABLE `users`
 ALTER TABLE `posts`
   MODIFY `post_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
+ALTER TABLE `author`
+  MODIFY `author_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT cho bảng `users`
 --

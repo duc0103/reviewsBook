@@ -94,8 +94,8 @@
 </head>
 <body>  
     <nav class="navbar navbar-expand-lg navbar-light ">
-        <a class="navbar-brand" href="<?= DOMAIN ?>">Giới thiệu sách</a>
-                <form  method="post" action="search_book.php"  style="margin-top:7px">
+        <a class="navbar-brand" href="">Giới thiệu sách</a>
+                <form  method="post" action="<?= DOMAIN ?>/search_book.php"  style="margin-top:7px">
                     <div style="display:flex">
                     <input type="text" class="form-control" id="inputPassword2" placeholder="Tìm Kiếm" name="textSearch">
                         <button type="submit" class="btn btn-default">

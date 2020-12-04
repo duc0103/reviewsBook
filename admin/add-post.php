@@ -64,11 +64,31 @@
                 else {
                     $image=$_FILES['post_thumb']['name'];
                     move_uploaded_file($_FILES['post_thumb']['tmp_name'], '../bootstrap/img/' . $_FILES['post_thumb']['name']);
-                    echo "upload thành công <br/>";
-                    echo 'Dường dẫn: bootstrap/img/' . $_FILES['post_thumb']['name'] . '<br>';
-                    echo 'Loại file: ' . $_FILES['post_thumb']['type'] . '<br>';
-                    echo 'Dung lượng: ' . ((int)$_FILES['post_thumb']['size'] / 1024) . 'KB';
-                }
+                  
+				}
+				$sql="select * from author where  author_name='$post_author'  limit 1";
+				$query=mysqli_query($conn,$sql);
+				$numsAuthor=mysqli_num_rows($query);
+				$author_id="";
+				if($numsAuthor>0){ 
+					$row=mysqli_fetch_array($query);
+					$author_id=$row['author_id'];
+
+				}
+				else{
+					$sql_add_author = "
+					INSERT INTO `author`(
+						`author_name`
+					)
+					VALUES(
+						'$post_author'
+					); ";
+					mysqli_query($conn,	$sql_add_author);
+					$sql="select * from author where  	='$post_author'  limit 1";
+					
+				}
+				$query=mysqli_query($conn,$sql);
+				$row=mysqli_fetch_array($query);
 			
 			//INSERT POST INFO TO DB----------------------------------------
             $sql_add_post = "
@@ -84,7 +104,8 @@
                 `key_word`,
                 `post_slug`,
                 `book_image`,
-                `category_id`
+				`category_id`,
+				`author_id`
             )
             VALUES(
                 '$post_title',
@@ -98,7 +119,8 @@
                 '$post_keyword',
                 '$post_slug',
                 '$image',
-                '$post_category'  
+				'$post_category' ,
+				'$author_id' 
             ); ";
 
 				if ($query_add_post = mysqli_query($conn,$sql_add_post) ) {
@@ -161,10 +183,6 @@
 						      <input class="form-control" id="post_content" name="book_name"><?php echo $post_content; ?>
 						    </div>
                             <div class="form-group">     
-							<div class="form-inline">
-								<label for="post_public">Đăng luôn</label>
-								<input type="checkbox" name="post_public" class="form-control" id="post_public" value="1" <?php echo ($isPublic==1)?"checked":" "; ?> >
-			  				</div>
 						</div> <!-- end content-element -->
 
 						<hr>
@@ -233,7 +251,7 @@
 						      	<span class="post-info-item"><i class="fa fa-user" style="font-size:14px;"></i> Người đăng: <?php echo $username_edit;?></span><br>
 						      	<span class="post-info-item"><i class="fa fa-cog" style="font-size:14px;"></i> Trạng thái: <?php echo ($isPublic == 1)?"Public":"Editing"; ?></span><br>
 
-								<input type="submit" name="publish" class="btn btn-sm btn-info"  value="Publish">
+								<input type="submit" name="publish" class="btn btn-sm btn-info"  value="Thêm">
 
 						      </div>
 						    </div>

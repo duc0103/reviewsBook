@@ -27,8 +27,8 @@
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <!-- ------------------------------------------------------------------------------------------ -->
 				<h3> 
-	  				<a href="add-post.php">
-	  					<button type="button" class="btn-sm btn btn-dark">Trang chu 
+	  				<a href="../index.php">
+	  					<button type="button" class="btn-sm btn btn-dark">Trang Chủ Client
 	  						<span class="fa fa-plus"></span>
 	  					</button>
 	  				</a>
